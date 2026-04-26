@@ -13,6 +13,7 @@ namespace sistemaVabel_AppMovil
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
+                    fonts.AddFont("Material-Symbols-Rounded.ttf", "MaterialIcons");
                 });
 
 #if DEBUG
