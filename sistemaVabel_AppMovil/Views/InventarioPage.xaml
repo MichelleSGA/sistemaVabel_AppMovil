@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="sistemaVabel_AppMovil.Views.InventarioPage"
+             xmlns:views="clr-namespace:sistemaVabel_AppMovil.Views"
+             Title="InventarioPage"
+             BackgroundColor="#ffffff">
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="15">
+
+            <Grid ColumnDefinitions="Auto, *, Auto" VerticalOptions="Start" Margin="0,10,0,10">
+                <ImageButton x:Name="back" Grid.Row="0" Grid.Column="0" Clicked="back_Clicked" BackgroundColor="Transparent" HeightRequest="30" WidthRequest="30">
+                    <ImageButton.Source>
+                        <FontImageSource FontFamily="MaterialIcons" Glyph="&#xe5c4;" Color="{StaticResource Primary}" Size="24"/>
+                    </ImageButton.Source>
+                </ImageButton>
+            </Grid>
+
+            <Label Text="Inventario" 
+                   FontSize="28" FontAttributes="Bold" 
+                   TextColor="{StaticResource VabelBlue}" 
+                   HorizontalOptions="Center" />
+            <Label Text="Página principal" 
+                   FontSize="18" 
+                   TextColor="#5A9FB1" 
+                   HorizontalOptions="Center" 
+                   Margin="0,-10,0,10"/>
+
+            <Grid ColumnDefinitions="*, *" ColumnSpacing="15">
+                <Frame Grid.Column="0" CornerRadius="25" HasShadow="True" BorderColor="Black" Padding="15">
+                    <VerticalStackLayout Spacing="2">
+                        <Label Text="Total productos" FontAttributes="Bold" TextColor="Gray"/>
+                        <Label Text="248" FontSize="32" FontAttributes="Bold" TextColor="Black"/>
+                        <Label Text="activos" TextColor="Gray"/>
+                    </VerticalStackLayout>
+                </Frame>
+
+                <Frame Grid.Column="1" CornerRadius="25" HasShadow="True" BorderColor="Black" Padding="15">
+                    <VerticalStackLayout Spacing="2">
+                        <Label Text="Valor total" FontAttributes="Bold" TextColor="Gray"/>
+                        <Label Text="$18,450" FontSize="26" FontAttributes="Bold" TextColor="Black"/>
+                        <Label Text="en inventario" TextColor="Gray"/>
+                    </VerticalStackLayout>
+                </Frame>
+            </Grid>
+
+            <Frame BackgroundColor="{StaticResource VabelBlue}" CornerRadius="20" HasShadow="False" Padding="15">
+                <Grid ColumnDefinitions="50, *, Auto">
+                    <BoxView WidthRequest="40" HeightRequest="40" CornerRadius="10" BackgroundColor="White" Opacity="0.9"/>
+                    <VerticalStackLayout Grid.Column="1" VerticalOptions="Center" Margin="10,0">
+                        <Label Text="Lista de faltantes" FontAttributes="Bold" TextColor="White" FontSize="16"/>
+                        <Label Text="12 productos por pedir" TextColor="White" FontSize="12"/>
+                    </VerticalStackLayout>
+                    <Label Grid.Column="2" Text=">" TextColor="White" VerticalOptions="Center" FontAttributes="Bold" FontSize="20"/>
+                </Grid>
+            </Frame>
+
+            <Frame BackgroundColor="{StaticResource VabelBlue}" CornerRadius="20" HasShadow="False" Padding="15">
+                <Grid ColumnDefinitions="50, *, Auto">
+                    <BoxView WidthRequest="40" HeightRequest="40" CornerRadius="10" BackgroundColor="White" Opacity="0.9"/>
+                    <VerticalStackLayout Grid.Column="1" VerticalOptions="Center" Margin="10,0">
+                        <Label Text="Catálogo de proveedores" FontAttributes="Bold" TextColor="White" FontSize="16"/>
+                        <Label Text="8 proveedores registrados" TextColor="White" FontSize="12"/>
+                    </VerticalStackLayout>
+                    <Label Grid.Column="2" Text=">" TextColor="White" VerticalOptions="Center" FontAttributes="Bold" FontSize="20"/>
+                </Grid>
+            </Frame>
+
+            <Grid ColumnDefinitions="*, *" ColumnSpacing="15">
+                <Frame Grid.Column="0" BackgroundColor="{StaticResource VabelRed}" 
+                       BorderColor="{StaticResource VabelRed}" CornerRadius="20" HasShadow="False" Padding="10">
+                    <HorizontalStackLayout Spacing="10">
+                        <Frame WidthRequest="35" HeightRequest="35" CornerRadius="8" BackgroundColor="White" Opacity="0.9" Padding="0" HasShadow="False">
+                            <Label Text="&#xe000;" FontFamily="MaterialIcons" TextColor="{StaticResource VabelRed}" FontSize="20" HorizontalOptions="Center" VerticalOptions="Center"/>
+                        </Frame>
+                        <Label Text="Agotados" VerticalOptions="Center" FontAttributes="Bold" TextColor="White" FontSize="13"/>
+                    </HorizontalStackLayout>
+                </Frame>
+
+                <Frame Grid.Column="1" BackgroundColor="{StaticResource VabelYellow}" 
+                       BorderColor="{StaticResource VabelYellow}" CornerRadius="20" HasShadow="False" Padding="10">
+                    <HorizontalStackLayout Spacing="10">
+                        <Frame WidthRequest="35" HeightRequest="35" CornerRadius="8" BackgroundColor="White" Opacity="0.9" Padding="0" HasShadow="False">
+                            <Label Text="&#xe000;" FontFamily="MaterialIcons" TextColor="{StaticResource VabelRed}" FontSize="20" HorizontalOptions="Center" VerticalOptions="Center"/>
+                        </Frame>
+                        <Label Text="Stock bajo" VerticalOptions="Center" FontAttributes="Bold" TextColor="White" FontSize="13"/>
+                    </HorizontalStackLayout>
+                </Frame>
+            </Grid>
+
+            <Label Text="Vabel v1.0.0" HorizontalOptions="Center" Margin="0,20,0,0" FontSize="12" TextColor="Gray"/>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

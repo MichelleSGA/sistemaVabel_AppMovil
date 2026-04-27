@@ -11,7 +11,7 @@
         <Tab Title="Inicio" >
             <ShellContent
                 Title="Home"
-                ContentTemplate="{DataTemplate local:MainPage}"
+                ContentTemplate="{DataTemplate views:MainPage}"
                 Route="MainPage" />
         </Tab>
 
@@ -22,5 +22,10 @@
                 Route="LibretaVentasPage" />
         </Tab>
     </TabBar>
+    <ShellContent
+        Shell.NavBarIsVisible="False"
+        ContentTemplate="{DataTemplate views:InventarioPage}"
+        Route="Inventario" />
+
 
 </Shell>

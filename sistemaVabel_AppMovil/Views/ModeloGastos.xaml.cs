@@ -1,10 +1,10 @@
 using sistemaVabel_AppMovil.Data;
 using sistemaVabel_AppMovil.Models;
-using sistemaVabel_AppMovil.Vista;
+using sistemaVabel_AppMovil.Views;
 using System.Windows.Input;
 
-namespace sistemaVabel_AppMovil.Vista;
-
+namespace sistemaVabel_AppMovil.Views
+{ 
 public partial class ModeloGastos : ContentPage
 {
     ServicioGasto ControlGasto;
@@ -13,7 +13,7 @@ public partial class ModeloGastos : ContentPage
     private string _metodoPagoSeleccionado = string.Empty;
     public ModeloGastos()
 	{
-        InitializeComponent();
+        InitializeComponent(); // Asegúrate de que el método sea accesible
         ControlGasto = new ServicioGasto();
         //servicioDBC = new DatabaseService();
         //servicioDBC.crear(); Temporalmente se quita en lo que se adapta
@@ -149,4 +149,5 @@ public partial class ModeloGastos : ContentPage
             await DisplayAlert("Error", $"No se pudo regresar: {ex.Message}", "OK");
         }
     }
+}
 }

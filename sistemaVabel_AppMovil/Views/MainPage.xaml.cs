@@ -1,20 +1,25 @@
-﻿using sistemaVabel_AppMovil.Vista;
+﻿using Microsoft.Maui.Controls; // Asegura que esta directiva esté presente
+using sistemaVabel_AppMovil.Views;
 
-namespace sistemaVabel_AppMovil
+namespace sistemaVabel_AppMovil.Views;
+
+public partial class MainPage : ContentPage
 {
-    public partial class MainPage : ContentPage
+    int count = 0;
+
+    public MainPage()
     {
-        int count = 0;
+        InitializeComponent(); // Este método es generado automáticamente por el archivo XAML asociado
+    }
 
-        public MainPage()
-        {
-            InitializeComponent();
-        }
+    // Este es el método que se ejecutará al presionar el botón rojo
+    private async void OnAgregarGastoClicked(object sender, EventArgs e)
+    {
+        await Navigation.PushModalAsync(new ModeloGastos());
+    }
 
-        // Este es el método que se ejecutará al presionar el botón rojo
-        private async void OnAgregarGastoClicked(object sender, EventArgs e)
-        {
-            await Navigation.PushModalAsync(new ModeloGastos());
-        }
+    private async void OnMiInventarioClicked(object sender, EventArgs e)
+    {
+        await Navigation.PushModalAsync(new InventarioPage());
     }
 }

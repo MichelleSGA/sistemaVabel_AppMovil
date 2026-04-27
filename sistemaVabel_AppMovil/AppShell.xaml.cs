@@ -11,6 +11,7 @@ namespace sistemaVabel_AppMovil
             // Esto es ideal para pantallas secundarias que no van en el menú principal.
             // Registramos la ruta para que MainPage pueda viajar a LibretaVentasPage
             Routing.RegisterRoute("LibretaVentasPage", typeof(Views.LibretaVentasPage));
+            Routing.RegisterRoute(nameof(InventarioPage), typeof(Views.InventarioPage));
         }
     }
 }

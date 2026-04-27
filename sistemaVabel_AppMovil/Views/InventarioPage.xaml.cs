@@ -1,26 +1,25 @@
-ï»¿using System.Collections.ObjectModel;
-using Balance_General.models;
-using Microsoft.Maui.Controls;
-using sistemaVabel_AppMovil.ViewModels;
+using sistemaVabel_AppMovil.Data;
+using sistemaVabel_AppMovil.Models;
+using sistemaVabel_AppMovil.Views;
+using System.Windows.Input;
 
 namespace sistemaVabel_AppMovil.Views
 {
-    public partial class BalanceGeneralPage : ContentPage
+    public partial class InventarioPage : ContentPage
     {
-        public BalanceGeneralPage()
+        public InventarioPage()
         {
             InitializeComponent();
-            BindingContext = new BalanceView();
         }
 
         private async void back_Clicked(object sender, EventArgs e)
         {
             try
             {
-                // Si la navegaciÃ³n usa Shell (recomendado en MAUI), esto regresa una ruta arriba
+                // Si la navegación usa Shell (recomendado en MAUI), esto regresa una ruta arriba
                 await Shell.Current.GoToAsync("..");
 
-                // En caso de que la pÃ¡gina se haya mostrado con Navigation.PushAsync, como respaldo:
+                // En caso de que la página se haya mostrado con Navigation.PushAsync, como respaldo:
                 // if (Navigation.ModalStack.Count > 0)
                 //     await Navigation.PopModalAsync();
                 // else if (Navigation.NavigationStack.Count > 1)

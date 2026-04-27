@@ -12,6 +12,13 @@
     <Color x:Key="Secondary">#DFD8F7</Color>
     <Color x:Key="SecondaryDarkText">#9880e5</Color>
     <Color x:Key="Tertiary">#2B0B98</Color>
+    
+    <Color x:Key="VabelBlue">#1086a0</Color>
+    <Color x:Key="BackgroundGray">#F0F4F7</Color>
+    <Color x:Key="VabelLightRed">#FFCDD2</Color>
+    <Color x:Key="VabelRed">#D32F2F</Color>
+    <Color x:Key="VabelLightYellow">#FFF9C4</Color>
+    <Color x:Key="VabelYellow">#FFC107</Color>
 
     <Color x:Key="White">White</Color>
     <Color x:Key="Black">Black</Color>
