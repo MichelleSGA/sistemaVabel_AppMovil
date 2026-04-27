@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Balance_General.viewmodels
+namespace sistemaVabel_AppMovil.ViewModels
 {
     public class BalanceView
     {

@@ -1,12 +1,13 @@
-﻿using sistemaVabel_AppMovil.Data;
-using sistemaVabel_AppMovil.Models;
-using sistemaVabel_AppMovil.Vista;
+﻿using System.Collections.ObjectModel;
+using Balance_General.models;
+using Microsoft.Maui.Controls;
+using sistemaVabel_AppMovil.ViewModels;
 
-namespace Balance_General
+namespace sistemaVabel_AppMovil.Views
 {
-    public partial class MainPage : ContentPage
+    public partial class BalanceGeneralPage : ContentPage
     {
-        public BalancePage()
+        public BalanceGeneralPage()
         {
             InitializeComponent();
             BindingContext = new BalanceView();

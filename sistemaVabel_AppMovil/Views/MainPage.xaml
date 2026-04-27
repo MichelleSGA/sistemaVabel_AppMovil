@@ -25,6 +25,10 @@
             </Border>
 
             <Border BackgroundColor="#1086a0" StrokeShape="RoundRectangle 15" Padding="20" Stroke="Transparent">
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding NavegarBalanceCommand}" />
+                </Border.GestureRecognizers>
+
                 <VerticalStackLayout HorizontalOptions="Center" Spacing="10">
                     <Label Text="Tus ganancias de hoy" TextColor="White" FontAttributes="Bold" FontSize="16" HorizontalOptions="Center"/>
                     <Label Text="{Binding GananciasHoy}" TextColor="White" FontAttributes="Bold" FontSize="45" HorizontalOptions="Center"/>
@@ -34,17 +38,34 @@
 
             <Grid ColumnDefinitions="*, *" RowDefinitions="100, 100" ColumnSpacing="15" RowSpacing="15">
 
-                <Button Grid.Row="0" Grid.Column="0" Text="Agregar venta" BackgroundColor="#3ba151" TextColor="White" CornerRadius="15"/>
+                <Button Grid.Row="0" Grid.Column="0" 
+                        Text="Agregar venta" 
+                        BackgroundColor="#3ba151" 
+                        TextColor="White" 
+                        CornerRadius="15"/>
 
-                <Button Grid.Row="0" Grid.Column="1" Text="Agregar gasto" BackgroundColor="#d43c2f" TextColor="White" CornerRadius="15" Clicked="OnAgregarGastoClicked"/>
+                <Button Grid.Row="0" Grid.Column="1" 
+                        Text="Agregar gasto" 
+                        BackgroundColor="#d43c2f" 
+                        TextColor="White" 
+                        CornerRadius="15" 
+                        Clicked="OnAgregarGastoClicked"/>
 
-                <Button Grid.Row="1" Grid.Column="0" Text="Libreta de ventas" 
+                <Button Grid.Row="1" Grid.Column="0" 
+                        Text="Libreta de ventas" 
                         Command="{Binding NavegarLibretaCommand}"
-                        BackgroundColor="#1086a0" TextColor="White" CornerRadius="15"/>
+                        BackgroundColor="#1086a0" 
+                        TextColor="White" 
+                        CornerRadius="15"/>
 
-                <Button Grid.Row="1" Grid.Column="1" Text="Mi Inventario" BackgroundColor="#f2b733" TextColor="White" CornerRadius="15"/>
+                <Button Grid.Row="1" Grid.Column="1" 
+                        Text="Mi Inventario" 
+                        BackgroundColor="#f2b733" 
+                        TextColor="White" 
+                        CornerRadius="15"/>
 
             </Grid>
+
             <Label Text="Vabel v1.0.0" TextColor="{StaticResource Primary}" HorizontalOptions="Center"/>
         </VerticalStackLayout>
     </ScrollView>
