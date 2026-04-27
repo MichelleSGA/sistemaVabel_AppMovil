@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Balance_General.MainPage">
+
+    <ScrollView Grid.Row="0" Padding="16,0,16,20">
+        <VerticalStackLayout Spacing="16">
+
+            <Grid ColumnDefinitions="Auto, *, Auto" Padding="0,16,0,8">
+                <Label Grid.Column="0" Text="◀" FontSize="18" TextColor="#6B7280" VerticalOptions="Center"/>
+                <Label Grid.Column="1" Text="Balance General" FontSize="18" FontAttributes="Bold" TextColor="#1F2937" HorizontalOptions="Center" VerticalOptions="Center"/>
+                <Label Grid.Column="2" Text="📅" FontSize="18" TextColor="#6B7280" VerticalOptions="Center"/>
+            </Grid>
+
+            <Border StrokeShape="RoundRectangle 16" BackgroundColor="White" Padding="20" StrokeThickness="0">
+                <Border.Shadow>
+                    <Shadow Brush="Black" Opacity="0.05" Offset="0,2" Radius="4" />
+                </Border.Shadow>
+                <VerticalStackLayout Spacing="8" HorizontalOptions="Center">
+                    <Label Text="Total de Ingresos (Hoy)" TextColor="#6B7280" FontSize="14" HorizontalOptions="Center"/>
+                    <Label Text="{Binding IngresoTotal}" TextColor="#1F2937" FontSize="36" FontAttributes="Bold" HorizontalOptions="Center"/>
+
+                    <Border StrokeShape="RoundRectangle 20" BackgroundColor="#D1FAE5" Padding="12,6" HorizontalOptions="Center" StrokeThickness="0">
+                        <Label Text="↗ +5.2% vs ayer" TextColor="#065F46" FontSize="12" FontAttributes="Bold"/>
+                    </Border>
+                </VerticalStackLayout>
+            </Border>
+
+            <Grid ColumnDefinitions="*, *, *" ColumnSpacing="12">
+                <Border Grid.Column="0" StrokeShape="RoundRectangle 12" BackgroundColor="White" Padding="12" StrokeThickness="0">
+                    <VerticalStackLayout HorizontalOptions="Center" Spacing="4">
+                        <Label Text="💵" FontSize="24" HorizontalOptions="Center" Margin="0,0,0,8"/>
+                        <Label Text="Efectivo" TextColor="#6B7280" FontSize="12" HorizontalOptions="Center"/>
+                        <Label Text="{Binding Efectivo}" TextColor="#1F2937" FontSize="14" FontAttributes="Bold" HorizontalOptions="Center"/>
+                    </VerticalStackLayout>
+                </Border>
+
+                <Border Grid.Column="1" StrokeShape="RoundRectangle 12" BackgroundColor="White" Padding="12" StrokeThickness="0">
+                    <VerticalStackLayout HorizontalOptions="Center" Spacing="4">
+                        <Label Text="💳" FontSize="24" HorizontalOptions="Center" Margin="0,0,0,8"/>
+                        <Label Text="Tarjeta" TextColor="#6B7280" FontSize="12" HorizontalOptions="Center"/>
+                        <Label Text="{Binding Tarjeta}" TextColor="#1F2937" FontSize="14" FontAttributes="Bold" HorizontalOptions="Center"/>
+                    </VerticalStackLayout>
+                </Border>
+
+                <Border Grid.Column="2" StrokeShape="RoundRectangle 12" BackgroundColor="White" Padding="12" StrokeThickness="0">
+                    <VerticalStackLayout HorizontalOptions="Center" Spacing="4">
+                        <Label Text="📱" FontSize="24" HorizontalOptions="Center" Margin="0,0,0,8"/>
+                        <Label Text="Transf." TextColor="#6B7280" FontSize="12" HorizontalOptions="Center"/>
+                        <Label Text="{Binding Transferencia}" TextColor="#1F2937" FontSize="14" FontAttributes="Bold" HorizontalOptions="Center"/>
+                    </VerticalStackLayout>
+                </Border>
+            </Grid>
+
+            <Grid ColumnDefinitions="*, *" ColumnSpacing="12">
+                <Border Grid.Column="0" StrokeShape="RoundRectangle 12" BackgroundColor="White" Padding="16" StrokeThickness="0">
+                    <VerticalStackLayout Spacing="4">
+                        <Label Text="Ventas Totales" TextColor="#6B7280" FontSize="12"/>
+                        <Label Text="{Binding VentasTotales}" TextColor="#1F2937" FontSize="20" FontAttributes="Bold"/>
+                    </VerticalStackLayout>
+                </Border>
+                <Border Grid.Column="1" StrokeShape="RoundRectangle 12" BackgroundColor="White" Padding="16" StrokeThickness="0">
+                    <VerticalStackLayout Spacing="4">
+                        <Label Text="Ticket Promedio" TextColor="#6B7280" FontSize="12"/>
+                        <Label Text="{Binding TicketPromedio}" TextColor="#1F2937" FontSize="20" FontAttributes="Bold"/>
+                    </VerticalStackLayout>
+                </Border>
+            </Grid>
+
+            <Label Text="Últimas Ventas" FontSize="16" FontAttributes="Bold" TextColor="#1F2937" Margin="0,8,0,0"/>
+
+            <Border StrokeShape="RoundRectangle 16" BackgroundColor="White" StrokeThickness="0">
+                <CollectionView ItemsSource="{Binding UltimasVentas}" Margin="0,8">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid ColumnDefinitions="50, *, Auto" Padding="16,12" RowDefinitions="Auto, Auto">
+                                <BoxView Grid.Row="1" Grid.ColumnSpan="3" HeightRequest="1" Color="#E5E7EB" VerticalOptions="End" Margin="0,12,0,-12"/>
+
+                                <Label Grid.Column="0" Text="{Binding Hora}" TextColor="#6B7280" FontSize="13" VerticalOptions="Center"/>
+
+                                <VerticalStackLayout Grid.Column="1" VerticalOptions="Center" Spacing="2">
+                                    <Label Text="{Binding Descripcion}" TextColor="#1F2937" FontSize="14" FontAttributes="Bold"/>
+                                    <Label Text="{Binding Detalles}" TextColor="#6B7280" FontSize="12"/>
+                                </VerticalStackLayout>
+
+                                <Label Grid.Column="2" Text="{Binding MontoFormateado}" TextColor="#1F2937" FontSize="15" FontAttributes="Bold" VerticalOptions="Center"/>
+                            </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </Border>
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>
