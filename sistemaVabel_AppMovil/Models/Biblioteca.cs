@@ -188,7 +188,7 @@ namespace sistemaVabel_AppMovil.Models
         PrecioVenta = 32.50m,
         StockActual = 60,
         StockMinimo = 10,
-        Descripcion = "refresco" png" en Images
+        Descripcion = "refresco"
     }
 };
         public async Task<List<Producto>> GetProductosAsync()

@@ -14,6 +14,7 @@ namespace sistemaVabel_AppMovil.Data
         public ServicioGasto()
         {
             conn = new SQLiteConnection(Path.Combine(FileSystem.AppDataDirectory, "VabelData.db"));
+            conn.CreateTable<GastoModelo>();
         }
         public void insertarGasto(GastoModelo gasto)
         {
