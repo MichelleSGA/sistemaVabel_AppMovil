@@ -1,13 +1,13 @@
 using sistemaVabel_AppMovil.Data;
 using sistemaVabel_AppMovil.Models;
 using sistemaVabel_AppMovil.Vista;
+using System.Windows.Input;
 
 namespace sistemaVabel_AppMovil.Vista;
 
 public partial class ModeloGastos : ContentPage
 {
     ServicioGasto ControlGasto;
-    DatabaseService servicioDBC;
 
     private string _categoriaSeleccionada = string.Empty;
     private string _metodoPagoSeleccionado = string.Empty;
@@ -15,9 +15,10 @@ public partial class ModeloGastos : ContentPage
 	{
         InitializeComponent();
         ControlGasto = new ServicioGasto();
-        servicioDBC = new DatabaseService();
+        //servicioDBC = new DatabaseService();
         //servicioDBC.crear(); Temporalmente se quita en lo que se adapta
     }
+
     // Selección de categoría
     void OnCategoryTapped(object sender, TappedEventArgs e)
     {
@@ -128,5 +129,24 @@ public partial class ModeloGastos : ContentPage
 
         borderEfectivo.StrokeThickness = 0;
         borderTarjeta.StrokeThickness = 0;
+    }
+
+    private async void back_Clicked(object sender, EventArgs e)
+    {
+        try
+        {
+            // Si la navegación usa Shell (recomendado en MAUI), esto regresa una ruta arriba
+            await Shell.Current.GoToAsync("..");
+
+            // En caso de que la página se haya mostrado con Navigation.PushAsync, como respaldo:
+            // if (Navigation.ModalStack.Count > 0)
+            //     await Navigation.PopModalAsync();
+            // else if (Navigation.NavigationStack.Count > 1)
+            //     await Navigation.PopAsync();
+        }
+        catch (Exception ex)
+        {
+            await DisplayAlert("Error", $"No se pudo regresar: {ex.Message}", "OK");
+        }
     }
 }

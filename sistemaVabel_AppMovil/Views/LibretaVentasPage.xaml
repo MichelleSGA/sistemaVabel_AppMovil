@@ -55,10 +55,10 @@
                         </Border.Shadow>
                         <VerticalStackLayout HorizontalOptions="Center" Spacing="5">
                             <HorizontalStackLayout HorizontalOptions="Center" Spacing="5">
-                                <Label Text="Tarjeta de" FontSize="12" TextColor="Gray" VerticalOptions="Center"/>
+                                <Label Text="Ganancias" FontSize="12" TextColor="Gray" VerticalOptions="Center"/>
                                 <Label Text="&#xe5d8;" FontFamily="MaterialIcons" TextColor="#4CAF50" FontSize="16" VerticalOptions="Center"/>
                             </HorizontalStackLayout>
-                            <Label Text="(Has ganado)" FontSize="10" TextColor="Gray" HorizontalOptions="Center"/>
+                            <Label Text="(En el periodo)" FontSize="10" TextColor="Gray" HorizontalOptions="Center"/>
                             <Label Text="{Binding GananciasTotales}" FontSize="14" FontAttributes="Bold" TextColor="Black" HorizontalOptions="Center"/>
                         </VerticalStackLayout>
                     </Border>
@@ -69,10 +69,10 @@
                         </Border.Shadow>
                         <VerticalStackLayout HorizontalOptions="Center" Spacing="5">
                             <HorizontalStackLayout HorizontalOptions="Center" Spacing="5">
-                                <Label Text="Tarjeta de" FontSize="12" TextColor="Gray" VerticalOptions="Center"/>
+                                <Label Text="Gastos" FontSize="12" TextColor="Gray" VerticalOptions="Center"/>
                                 <Label Text="&#xe5db;" FontFamily="MaterialIcons" TextColor="#d43c2f" FontSize="16" VerticalOptions="Center"/>
                             </HorizontalStackLayout>
-                            <Label Text="(Has gastado)" FontSize="10" TextColor="Gray" HorizontalOptions="Center"/>
+                            <Label Text="(En el periodo)" FontSize="10" TextColor="Gray" HorizontalOptions="Center"/>
                             <Label Text="{Binding GastosTotales}" FontSize="14" FontAttributes="Bold" TextColor="Black" HorizontalOptions="Center"/>
                         </VerticalStackLayout>
                     </Border>
