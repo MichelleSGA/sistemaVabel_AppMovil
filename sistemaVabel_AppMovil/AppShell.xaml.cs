@@ -12,6 +12,7 @@ namespace sistemaVabel_AppMovil
             // Registramos la ruta para que MainPage pueda viajar a LibretaVentasPage
             Routing.RegisterRoute("LibretaVentasPage", typeof(Views.LibretaVentasPage));
             Routing.RegisterRoute(nameof(InventarioPage), typeof(Views.InventarioPage));
+            Routing.RegisterRoute("HistorialGastosPage", typeof(Views.HistorialGastosPage));
         }
     }
 }

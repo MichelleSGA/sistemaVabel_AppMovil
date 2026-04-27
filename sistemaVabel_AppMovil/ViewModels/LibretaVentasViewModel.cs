@@ -36,7 +36,7 @@ namespace sistemaVabel_AppMovil.ViewModels
 
             // 2. Inicializamos los comandos vacíos para que la app no colapse al presionarlos
             SeleccionarPeriodoCommand = new Command(() => { /* Sin acción por ahora */ });
-            NavegarGastosCommand = new Command(() => { /* Sin acción por ahora */ });
+            NavegarGastosCommand = new Command(async () => await Shell.Current.GoToAsync("HistorialGastosPage"));
             NavegarVentasCommand = new Command(() => { /* Sin acción por ahora */ });
             BackCommand = new Command(async () => await RegresarAsync());
         }

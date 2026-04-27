@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using SQLite;
 using System.ComponentModel;
+using System.Runtime.CompilerServices;
+
 
 namespace sistemaVabel_AppMovil.Models
 {
@@ -34,7 +36,22 @@ namespace sistemaVabel_AppMovil.Models
         public decimal PrecioCompra { get; set; }
         public decimal PrecioVenta { get; set; }
 
-        public int StockActual { get; set; }
+        // --- CAMBIO AQUÍ: StockActual con notificación ------------------
+        private int _stockActual;
+        public int StockActual
+        {
+            get => _stockActual;
+            set
+            {
+                if (_stockActual != value)
+                {
+                    _stockActual = value;
+                    OnPropertyChanged(nameof(StockActual));
+                    OnPropertyChanged(nameof(RequiereResurtido));
+                }
+            }
+        }
+//----------------------- 
         public int StockMinimo { get; set; }
 
         // Método auxiliar para la GUI (Alerta de escasez)
@@ -57,7 +74,7 @@ namespace sistemaVabel_AppMovil.Models
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        protected void OnPropertyChanged(string propertyName = null)
+        protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
@@ -135,35 +152,35 @@ namespace sistemaVabel_AppMovil.Models
         PrecioVenta = 25.50m,
         StockActual = 50,
         StockMinimo = 5,
-        Descripcion = "leche" // <--- Aquí pones el nombre de tu archivo leche.png
+        Descripcion = "leche"  
     },
     new Producto {
         Nombre = "Pan Blanco",
         PrecioVenta = 35.00m,
         StockActual = 20,
         StockMinimo = 3,
-        Descripcion = "pan" // <--- Si tu archivo se llama pan.png
+        Descripcion = "pan" 
     },
     new Producto {
         Nombre = "Huevo 12 pz",
         PrecioVenta = 45.00m,
         StockActual = 15,
         StockMinimo = 5,
-        Descripcion = "huevos" // <--- Si tu archivo se llama huevos.png
+        Descripcion = "huevos" 
     },
     new Producto {
         Nombre = "Arroz 1kg",
         PrecioVenta = 28.00m,
         StockActual = 40,
         StockMinimo = 10,
-        Descripcion = "arroz" // <--- Si tu archivo se llama arroz.png
+        Descripcion = "arroz" 
     },
     new Producto {
         Nombre = "Aceite de Oliva 500ml",
         PrecioVenta = 85.00m,
         StockActual = 15,
         StockMinimo = 2,
-        Descripcion = "aceite" // <--- Necesitas un icono "aceite.png" en Images
+        Descripcion = "aceite"  
     },
     // NUEVO PRODUCTO 2: Refresco
     new Producto {
@@ -171,7 +188,7 @@ namespace sistemaVabel_AppMovil.Models
         PrecioVenta = 32.50m,
         StockActual = 60,
         StockMinimo = 10,
-        Descripcion = "refresco" // <--- Necesitas un icono "refresco.png" en Images
+        Descripcion = "refresco"
     }
 };
         public async Task<List<Producto>> GetProductosAsync()
