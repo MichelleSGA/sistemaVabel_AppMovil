@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="sistemaVabel_AppMovil.Vista.ModeloGastos"
+             BackgroundColor="#FFFFFF">
+    <ContentPage.Resources>
+        <Color x:Key="PrimaryTeal">#1A6B80</Color>
+        <Color x:Key="LightTeal">#C2E5EB</Color>
+        <Color x:Key="ButtonBlue">#67BAD3</Color>
+        <Color x:Key="LightGray">#F3F3F3</Color>
+
+        <Style TargetType="Border">
+            <Setter Property="StrokeThickness" Value="0" />
+            <Setter Property="Stroke" Value="Transparent" />
+        </Style>
+
+        <Style TargetType="RadioButton">
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="Selected">
+                            <VisualState.Setters>
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
+    </ContentPage.Resources>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20,10,20,30" Spacing="15">
+
+            <Grid ColumnDefinitions="Auto, *, Auto" Margin="0,10,0,20">
+                <ImageButton x:Name="regresar_btn" Source="icon_back.png" 
+                         WidthRequest="30" HeightRequest="30" 
+                         BackgroundColor="Transparent"
+                         HorizontalOptions="Start" VerticalOptions="Center"/>
+
+                <VerticalStackLayout Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center">
+                    <Image Source="vabel_completo_color.png" HeightRequest="35" Margin="0,0,0,5"/>
+                    <Label Text="Libreta de ventas" FontAttributes="Bold" FontSize="22" HorizontalOptions="Center" TextColor="#222222"/>
+                    <Label Text="- Gasto" FontAttributes="Bold" FontSize="22" HorizontalOptions="Center" TextColor="#222222"/>
+                </VerticalStackLayout>
+
+                <ImageButton x:Name="ajustes_btn"  Grid.Column="2" Source="icon_settings.png" 
+                         WidthRequest="30" HeightRequest="30" 
+                         BackgroundColor="Transparent"
+                         HorizontalOptions="End" VerticalOptions="Center"/>
+            </Grid>
+
+            <Border BackgroundColor="{StaticResource PrimaryTeal}" StrokeShape="RoundRectangle 15" Padding="20">
+                <VerticalStackLayout Spacing="15">
+                    <Label Text="Valor total del gasto" TextColor="White" FontAttributes="Bold" 
+                   FontSize="18" HorizontalOptions="Center"/>
+                    <Entry x:Name="txtMonto" Placeholder="Ingresa el monto total del gasto..." 
+                       PlaceholderColor="Gray" TextColor="Black" BackgroundColor="White"
+                       VerticalOptions="Center" Keyboard="Numeric"/>
+                </VerticalStackLayout>
+            </Border>
+
+            <VerticalStackLayout Spacing="8" HorizontalOptions="Center" Margin="0,5">
+                <Label Text="Fecha" FontAttributes="Bold" FontSize="18" HorizontalOptions="Center" TextColor="#222222"/>
+                <DatePicker x:Name="datePicker"
+                        Format="dd/MM/yyyy"
+                        MinimumDate="01/01/2020"
+                        MaximumDate="05/12/2026" />
+            </VerticalStackLayout>
+
+            <VerticalStackLayout Spacing="10">
+                <Label Text="¿De qué es el gasto?" FontAttributes="Bold" FontSize="18" TextColor="#222222"/>
+                <Border BackgroundColor="{StaticResource PrimaryTeal}" StrokeShape="RoundRectangle 15" Padding="10">
+                    <ScrollView Orientation="Horizontal" HorizontalScrollBarVisibility="Never">
+                        <HorizontalStackLayout Spacing="10">
+
+                            <Border x:Name="borderAlquiler" BackgroundColor="{StaticResource LightTeal}" WidthRequest="95" HeightRequest="95" StrokeShape="RoundRectangle 15">
+                                <Border.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnCategoryTapped" CommandParameter="Alquiler"/>
+                                </Border.GestureRecognizers>
+                                <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="8">
+                                    <Image Source="icon_home.png" WidthRequest="35" HeightRequest="35"/>
+                                    <Label Text="Alquiler" FontSize="14" HorizontalOptions="Center" TextColor="#222222"/>
+                                </VerticalStackLayout>
+                            </Border>
+
+                            <Border x:Name="borderLuz" BackgroundColor="{StaticResource LightTeal}" WidthRequest="95" HeightRequest="95" StrokeShape="RoundRectangle 15">
+                                <Border.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnCategoryTapped" CommandParameter="Luz"/>
+                                </Border.GestureRecognizers>
+                                <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="8">
+                                    <Image Source="icon_lightbulb.png" WidthRequest="35" HeightRequest="35"/>
+                                    <Label Text="Luz" FontSize="14" HorizontalOptions="Center" TextColor="#222222"/>
+                                </VerticalStackLayout>
+                            </Border>
+
+                            <Border x:Name="borderSueldos" BackgroundColor="{StaticResource LightTeal}" WidthRequest="95" HeightRequest="95" StrokeShape="RoundRectangle 15">
+                                <Border.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnCategoryTapped" CommandParameter="Sueldos"/>
+                                </Border.GestureRecognizers>
+                                <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="8">
+                                    <Image Source="icon_salary.png" WidthRequest="35" HeightRequest="35"/>
+                                    <Label Text="Sueldos" FontSize="14" HorizontalOptions="Center" TextColor="#222222"/>
+                                </VerticalStackLayout>
+                            </Border>
+
+                        </HorizontalStackLayout>
+                    </ScrollView>
+                </Border>
+            </VerticalStackLayout>
+
+            <VerticalStackLayout Spacing="10">
+                <Label Text="Método de pago" FontAttributes="Bold" FontSize="18" TextColor="#222222"/>
+                <Border BackgroundColor="{StaticResource PrimaryTeal}" StrokeShape="RoundRectangle 15" Padding="10">
+                    <ScrollView Orientation="Horizontal" HorizontalScrollBarVisibility="Never">
+                        <HorizontalStackLayout Spacing="10">
+
+                            <Border x:Name="borderEfectivo" BackgroundColor="{StaticResource LightTeal}" WidthRequest="110" HeightRequest="95" StrokeShape="RoundRectangle 15">
+                                <Border.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnPaymentMethodTapped" CommandParameter="Efectivo"/>
+                                </Border.GestureRecognizers>
+                                <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="8">
+                                    <Image Source="icon_cash.png" WidthRequest="40" HeightRequest="35"/>
+                                    <Label Text="Efectivo" FontSize="14" HorizontalOptions="Center" TextColor="#222222"/>
+                                </VerticalStackLayout>
+                            </Border>
+
+                            <Border x:Name="borderTarjeta" BackgroundColor="White" WidthRequest="110" HeightRequest="95" StrokeShape="RoundRectangle 15">
+                                <Border.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnPaymentMethodTapped" CommandParameter="Tarjeta"/>
+                                </Border.GestureRecognizers>
+                                <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="8">
+                                    <Image Source="icon_card.png" WidthRequest="40" HeightRequest="35"/>
+                                    <Label Text="Tarjeta" FontSize="14" HorizontalOptions="Center" TextColor="#222222"/>
+                                </VerticalStackLayout>
+                            </Border>
+
+                        </HorizontalStackLayout>
+                    </ScrollView>
+                </Border>
+            </VerticalStackLayout>
+
+            <HorizontalStackLayout Spacing="10" Margin="5,10">
+                <RadioButton Content="¿El efectivo salió de caja?" x:Name="rbCaja" FontAttributes="Bold" FontSize="18" TextColor="#222222" VerticalOptions="Center" IsChecked="False"/>
+            </HorizontalStackLayout>
+
+            <Button Text="Registrar gasto" 
+            BackgroundColor="{StaticResource ButtonBlue}" 
+            TextColor="White" 
+            FontAttributes="Bold" 
+            FontSize="18" 
+            CornerRadius="25"
+            HeightRequest="60"
+            Margin="0,10,0,20"
+            Clicked="OnRegisterClicked"/>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
