@@ -26,6 +26,9 @@
         Shell.NavBarIsVisible="False"
         ContentTemplate="{DataTemplate views:InventarioPage}"
         Route="Inventario" />
-
+    <ShellContent
+        Title="Nueva Venta"
+        ContentTemplate="{DataTemplate views:NuevaVentaPage}"
+        Route="NuevaVentaPage" />
 
 </Shell>

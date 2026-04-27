@@ -1,12 +1,11 @@
 ﻿using Microsoft.Maui.Controls; // Asegura que esta directiva esté presente
 using sistemaVabel_AppMovil.Views;
+using System.Threading.Tasks;
 
 namespace sistemaVabel_AppMovil.Views;
 
 public partial class MainPage : ContentPage
 {
-    int count = 0;
-
     public MainPage()
     {
         InitializeComponent(); // Este método es generado automáticamente por el archivo XAML asociado
@@ -21,5 +20,10 @@ public partial class MainPage : ContentPage
     private async void OnMiInventarioClicked(object sender, EventArgs e)
     {
         await Navigation.PushModalAsync(new InventarioPage());
+    }
+
+    private async void OnAgregarVentaClicked(object sender, EventArgs e)
+    {
+        await Navigation.PushModalAsync(new NuevaVentaPage());
     }
 }

@@ -42,7 +42,8 @@
                         Text="Agregar venta" 
                         BackgroundColor="#3ba151" 
                         TextColor="White" 
-                        CornerRadius="15"/>
+                        CornerRadius="15"
+                        Clicked="OnAgregarVentaClicked"/>
 
                 <Button Grid.Row="0" Grid.Column="1" 
                         Text="Agregar gasto" 

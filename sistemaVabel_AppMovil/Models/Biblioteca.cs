@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using SQLite;
+using System.ComponentModel;
 
 namespace sistemaVabel_AppMovil.Models
 {
@@ -16,7 +17,7 @@ namespace sistemaVabel_AppMovil.Models
         public string InformacionContacto { get; set; }
     }
 
-    public class Producto
+    public class Producto : INotifyPropertyChanged
     {
         [PrimaryKey, AutoIncrement]
         public int ProductoId { get; set; }
@@ -39,6 +40,27 @@ namespace sistemaVabel_AppMovil.Models
         // Método auxiliar para la GUI (Alerta de escasez)
         [Ignore] // No se guarda en la base de datos, solo para la lógica de la GUI
         public bool RequiereResurtido => StockActual <= StockMinimo;
+        // Propiedades para la venta y la burbuja amarilla
+        private int _cantidadEnCarrito;
+        public int CantidadEnCarrito
+        {
+            get => _cantidadEnCarrito;
+            set
+            {
+                _cantidadEnCarrito = value;
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(TieneItems));
+            }
+        }
+
+        public bool TieneItems => CantidadEnCarrito > 0;
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected void OnPropertyChanged(string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
     }
 
     public enum TipoMovimientoInventario
@@ -105,6 +127,62 @@ namespace sistemaVabel_AppMovil.Models
 
     public class InventarioService
     {
+        // Lista simulada de productos (Esto después lo traerás de una base de datos)
+        private List<Producto> _productosData = new List<Producto>
+{
+    new Producto {
+        Nombre = "Leche Entera 1L",
+        PrecioVenta = 25.50m,
+        StockActual = 50,
+        StockMinimo = 5,
+        Descripcion = "leche" // <--- Aquí pones el nombre de tu archivo leche.png
+    },
+    new Producto {
+        Nombre = "Pan Blanco",
+        PrecioVenta = 35.00m,
+        StockActual = 20,
+        StockMinimo = 3,
+        Descripcion = "pan" // <--- Si tu archivo se llama pan.png
+    },
+    new Producto {
+        Nombre = "Huevo 12 pz",
+        PrecioVenta = 45.00m,
+        StockActual = 15,
+        StockMinimo = 5,
+        Descripcion = "huevos" // <--- Si tu archivo se llama huevos.png
+    },
+    new Producto {
+        Nombre = "Arroz 1kg",
+        PrecioVenta = 28.00m,
+        StockActual = 40,
+        StockMinimo = 10,
+        Descripcion = "arroz" // <--- Si tu archivo se llama arroz.png
+    },
+    new Producto {
+        Nombre = "Aceite de Oliva 500ml",
+        PrecioVenta = 85.00m,
+        StockActual = 15,
+        StockMinimo = 2,
+        Descripcion = "aceite" // <--- Necesitas un icono "aceite.png" en Images
+    },
+    // NUEVO PRODUCTO 2: Refresco
+    new Producto {
+        Nombre = "Refresco Cola 2L",
+        PrecioVenta = 32.50m,
+        StockActual = 60,
+        StockMinimo = 10,
+        Descripcion = "refresco" // <--- Necesitas un icono "refresco.png" en Images
+    }
+};
+        public async Task<List<Producto>> GetProductosAsync()
+        {
+            // Simulamos un retraso de red de 100ms
+            await Task.Delay(100);
+            return _productosData;
+        }
+
+        public event Action<string>? StockMinimoAlerta;
+
         // Métodos que los botones de la GUI mandarían a llamar
         public void RegistrarNuevoProducto(Producto nuevoProducto)
         {
@@ -113,13 +191,14 @@ namespace sistemaVabel_AppMovil.Models
 
         public void RegistrarMovimiento(MovimientoInventario movimiento, Producto producto)
         {
-            // 1. Registrar el movimiento
-            // 2. Actualizar el stock automáticamente
             if (movimiento.TipoMovimiento == TipoMovimientoInventario.EntradaCompra)
                 producto.StockActual += movimiento.Cantidad;
-            else
+            else if (movimiento.TipoMovimiento == TipoMovimientoInventario.SalidaVenta)
                 producto.StockActual -= movimiento.Cantidad;
-
+            else if (movimiento.TipoMovimiento == TipoMovimientoInventario.SalidaMerma)
+                producto.StockActual -= movimiento.Cantidad;
+            else if (movimiento.TipoMovimiento == TipoMovimientoInventario.Devolucion)
+                producto.StockActual += movimiento.Cantidad;
             if (producto.RequiereResurtido)
             {
                 NotificarCambioEnGUI_AlertaStockMinimo(producto.Nombre);
@@ -128,6 +207,7 @@ namespace sistemaVabel_AppMovil.Models
         private void NotificarCambioEnGUI_AlertaStockMinimo(string nombreProducto)
         {
             // Evento para mostrar un DisplayAlert en la Vista MAUI
+            StockMinimoAlerta?.Invoke(nombreProducto);
         }
     }
 }

@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="sistemaVabel_AppMovil.Views.NuevaVentaPage"
+             BackgroundColor="#F5F5F5"
+             Shell.NavBarIsVisible="False">
+
+    <Grid RowDefinitions="Auto, *, Auto">
+
+        <VerticalStackLayout Grid.Row="0" BackgroundColor="{StaticResource Primary}" Padding="20,40,20,20" Spacing="5">
+            <Image Source="vabel_icon.png" HeightRequest="60" HorizontalOptions="Center" />
+            <Label Text="Libreta de ventas" HorizontalOptions="Center" TextColor="White" FontSize="18"/>
+            <Label Text="Nueva venta" HorizontalOptions="Center" TextColor="White" FontSize="22" FontAttributes="Bold"/>
+        </VerticalStackLayout>
+
+        <Frame Grid.Row="1" Margin="0,-20,0,0" CornerRadius="30" HasShadow="False" BackgroundColor="White" Padding="0">
+            <ScrollView>
+                <VerticalStackLayout Spacing="15" Padding="20,20,20,20">
+
+                    <Border Stroke="#CCCCCC" StrokeThickness="1.5" StrokeShape="RoundRectangle 20" HeightRequest="45" Padding="15,0">
+                        <Grid ColumnDefinitions="*, Auto">
+                            <Entry x:Name="txtBusqueda" 
+                                   Placeholder="Buscar producto..." 
+                                   PlaceholderColor="#A9A9A9"
+                                   VerticalOptions="Center"
+                                   TextChanged="OnBusquedaChanged"
+                                   FontSize="14"
+                                   TextColor="Black"/>
+                            <Image Grid.Column="1" Source="search_icon.png" HeightRequest="22" WidthRequest="22" Margin="5,0" Opacity="0.6"/>
+                        </Grid>
+                    </Border>
+
+                    <Border Stroke="{StaticResource Primary}" StrokeThickness="1.5" StrokeShape="RoundRectangle 20" HeightRequest="45" Padding="15,0">
+                        <Grid ColumnDefinitions="*, Auto">
+                            <Picker Title="Seleccionar origen del producto" 
+                                    VerticalOptions="Center" 
+                                    Grid.ColumnSpan="2" 
+                                    FontSize="14"
+                                    TitleColor="#555555"
+                                    TextColor="{StaticResource Primary}">
+                                <Picker.Items>
+                                    <x:String>Almacén Central</x:String>
+                                    <x:String>Tienda Física</x:String>
+                                    <x:String>Bodega Secundaria</x:String>
+                                </Picker.Items>
+                            </Picker>
+                            <Image Grid.Column="1" Source="flecha_nueva.png" HeightRequest="12" WidthRequest="12" InputTransparent="True" Opacity="0.8"/>
+                        </Grid>
+                    </Border>
+
+                    <CollectionView x:Name="ListaProductosView" SelectionMode="Single" SelectionChanged="OnProductoTapped">
+                        <CollectionView.ItemsLayout>
+                            <GridItemsLayout Orientation="Vertical" Span="2" HorizontalItemSpacing="10" VerticalItemSpacing="10"/>
+                        </CollectionView.ItemsLayout>
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Padding="0" Margin="0">
+                                    <Frame BackgroundColor="{StaticResource Primary}" CornerRadius="15" Padding="10" HeightRequest="210" HasShadow="False">
+                                        <VerticalStackLayout Spacing="8" HorizontalOptions="Center" VerticalOptions="Center">
+                                            <Label Text="{Binding Nombre}" TextColor="White" FontAttributes="Bold" HorizontalOptions="Center" FontSize="14" LineBreakMode="TailTruncation"/>
+                                            <Image Source="{Binding Descripcion}" HeightRequest="75" WidthRequest="75" HorizontalOptions="Center" Aspect="AspectFit"/>
+                                            <Label Text="{Binding PrecioVenta, StringFormat='{0:C}'}" TextColor="White" FontSize="15" HorizontalOptions="Center"/>
+                                            <Label Text="{Binding StockActual, StringFormat='Stock: {0}'}" TextColor="#D1D1D1" FontSize="11" HorizontalOptions="Center"/>
+                                        </VerticalStackLayout>
+                                    </Frame>
+
+                                    <Border BackgroundColor="#FFD700" Stroke="White" StrokeThickness="2" HorizontalOptions="End" VerticalOptions="Start" Margin="0,5,5,0" HeightRequest="30" WidthRequest="30" StrokeShape="RoundRectangle 15" IsVisible="{Binding TieneItems}">
+                                        <Label Text="{Binding CantidadEnCarrito}" TextColor="Black" FontSize="14" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center"/>
+                                    </Border>
+
+                                    <Border BackgroundColor="#489fb5" Stroke="White" StrokeThickness="1" HorizontalOptions="End" VerticalOptions="End" Margin="0,0,10,10" HeightRequest="35" WidthRequest="35" StrokeShape="RoundRectangle 17.5">
+                                        <Label Text="+" TextColor="White" FontSize="20" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center"/>
+                                        <Border.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="OnAgregarProductoClicked" CommandParameter="{Binding .}"/>
+                                        </Border.GestureRecognizers>
+                                    </Border>
+
+                                    <Border BackgroundColor="#E74C3C" Stroke="White" StrokeThickness="1" HorizontalOptions="Start" VerticalOptions="End" Margin="10,0,0,10" HeightRequest="35" WidthRequest="35" StrokeShape="RoundRectangle 17.5">
+                                        <Label Text="-" TextColor="White" FontSize="20" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center"/>
+                                        <Border.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="OnQuitarProductoClicked" CommandParameter="{Binding .}"/>
+                                        </Border.GestureRecognizers>
+                                    </Border>
+                                </Grid>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </VerticalStackLayout>
+            </ScrollView>
+        </Frame>
+
+        <Frame Grid.Row="2" BackgroundColor="#F0F0F0" Padding="20,15" Margin="10" CornerRadius="25">
+            <Grid ColumnDefinitions="*, Auto">
+                <VerticalStackLayout Grid.Column="0" VerticalOptions="Center">
+                    <Label x:Name="lblConteo" Text="0 productos seleccionados" FontSize="13" TextColor="#666666"/>
+                    <Label x:Name="lblTotal" Text="Total: $0.00" FontSize="20" FontAttributes="Bold" TextColor="Black"/>
+                </VerticalStackLayout>
+                <Button x:Name="btnContinuar" Grid.Column="1" Text="Confirmar" BackgroundColor="#489fb5" Clicked="OnConfirmarClicked" TextColor="White" CornerRadius="25" Padding="25,10" FontAttributes="Bold"/>
+            </Grid>
+        </Frame>
+    </Grid>
+</ContentPage>
