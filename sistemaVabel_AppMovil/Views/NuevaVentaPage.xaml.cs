@@ -26,32 +26,46 @@ public partial class NuevaVentaPage : ContentPage
     }
 
     private void OnAgregarProductoClicked(object sender, EventArgs e)
+{
+    var border = (Border)sender;
+    var producto = (Producto)border.BindingContext;
+
+    if (producto != null)
     {
-        var border = (Border)sender;
-        var producto = (Producto)border.BindingContext;
-        if (producto != null)
+        // Validamos que haya stock antes de agregar
+        if (producto.StockActual > 0)
         {
-            producto.CantidadEnCarrito++;
+            producto.CantidadEnCarrito++; // Sube burbuja amarilla
+            producto.StockActual--;      // BAJA EL NÚMERO DE STOCK EN LA TARJETA
+
             total += producto.PrecioVenta;
             items++;
             ActualizarLabelsFooter();
             border.ScaleTo(1.2, 100).ContinueWith(t => border.ScaleTo(1.0, 100));
         }
-    }
-
-    private void OnQuitarProductoClicked(object sender, EventArgs e)
-    {
-        var border = (Border)sender;
-        var producto = (Producto)border.BindingContext;
-        if (producto != null && producto.CantidadEnCarrito > 0)
+        else
         {
-            producto.CantidadEnCarrito--;
-            total -= producto.PrecioVenta;
-            items--;
-            ActualizarLabelsFooter();
-            border.ScaleTo(1.2, 100).ContinueWith(t => border.ScaleTo(1.0, 100));
+            DisplayAlert("Agotado", "No hay más unidades disponibles", "OK");
         }
     }
+}
+
+private void OnQuitarProductoClicked(object sender, EventArgs e)
+{
+    var border = (Border)sender;
+    var producto = (Producto)border.BindingContext;
+
+    if (producto != null && producto.CantidadEnCarrito > 0)
+    {
+        producto.CantidadEnCarrito--; // Baja burbuja amarilla
+        producto.StockActual++;      // DEVUELVE LA UNIDAD AL STOCK VISUAL
+
+        total -= producto.PrecioVenta;
+        items--;
+        ActualizarLabelsFooter();
+        border.ScaleTo(1.2, 100).ContinueWith(t => border.ScaleTo(1.0, 100));
+    }
+}
 
     private void ActualizarLabelsFooter()
     {
@@ -92,15 +106,15 @@ public partial class NuevaVentaPage : ContentPage
     }
 
     private void OnProductoTapped(object sender, SelectionChangedEventArgs e)
-    {
-        if (e.CurrentSelection.FirstOrDefault() is Producto prod)
         {
-            prod.CantidadEnCarrito++;
-            total += prod.PrecioVenta;
-            items++;
-            ActualizarLabelsFooter();
-            ((CollectionView)sender).SelectedItem = null;
+            if (e.CurrentSelection.FirstOrDefault() is Producto prod)
+            {
+                prod.CantidadEnCarrito++;
+                total += prod.PrecioVenta;
+                items++;
+                ActualizarLabelsFooter();
+                ((CollectionView)sender).SelectedItem = null;
+            }
         }
     }
-}
 }
