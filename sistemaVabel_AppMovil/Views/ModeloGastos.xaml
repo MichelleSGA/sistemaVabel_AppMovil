@@ -85,7 +85,7 @@
                                     <TapGestureRecognizer Tapped="OnCategoryTapped" CommandParameter="Alquiler"/>
                                 </Border.GestureRecognizers>
                                 <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="8">
-                                    <Image Source="icon_home.png" WidthRequest="35" HeightRequest="35"/>
+                                    <Label Text="🏠" FontSize="35" HorizontalOptions="Center"/>
                                     <Label Text="Alquiler" FontSize="14" HorizontalOptions="Center" TextColor="#222222"/>
                                 </VerticalStackLayout>
                             </Border>
@@ -95,7 +95,7 @@
                                     <TapGestureRecognizer Tapped="OnCategoryTapped" CommandParameter="Luz"/>
                                 </Border.GestureRecognizers>
                                 <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="8">
-                                    <Image Source="icon_lightbulb.png" WidthRequest="35" HeightRequest="35"/>
+                                    <Label Text="💡" FontSize="35" HorizontalOptions="Center"/>
                                     <Label Text="Luz" FontSize="14" HorizontalOptions="Center" TextColor="#222222"/>
                                 </VerticalStackLayout>
                             </Border>
@@ -105,7 +105,7 @@
                                     <TapGestureRecognizer Tapped="OnCategoryTapped" CommandParameter="Sueldos"/>
                                 </Border.GestureRecognizers>
                                 <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="8">
-                                    <Image Source="icon_salary.png" WidthRequest="35" HeightRequest="35"/>
+                                    <Label Text="💰" FontSize="35" HorizontalOptions="Center"/>
                                     <Label Text="Sueldos" FontSize="14" HorizontalOptions="Center" TextColor="#222222"/>
                                 </VerticalStackLayout>
                             </Border>
@@ -126,7 +126,7 @@
                                     <TapGestureRecognizer Tapped="OnPaymentMethodTapped" CommandParameter="Efectivo"/>
                                 </Border.GestureRecognizers>
                                 <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="8">
-                                    <Image Source="icon_cash.png" WidthRequest="40" HeightRequest="35"/>
+                                    <Label Text="💵" FontSize="35" HorizontalOptions="Center"/>
                                     <Label Text="Efectivo" FontSize="14" HorizontalOptions="Center" TextColor="#222222"/>
                                 </VerticalStackLayout>
                             </Border>
@@ -136,7 +136,7 @@
                                     <TapGestureRecognizer Tapped="OnPaymentMethodTapped" CommandParameter="Tarjeta"/>
                                 </Border.GestureRecognizers>
                                 <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="8">
-                                    <Image Source="icon_card.png" WidthRequest="40" HeightRequest="35"/>
+                                    <Label Text="💳" FontSize="35" HorizontalOptions="Center"/>
                                     <Label Text="Tarjeta" FontSize="14" HorizontalOptions="Center" TextColor="#222222"/>
                                 </VerticalStackLayout>
                             </Border>

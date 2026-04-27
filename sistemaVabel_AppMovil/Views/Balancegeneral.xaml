@@ -8,12 +8,17 @@
         <VerticalStackLayout Spacing="16">
 
             <Grid ColumnDefinitions="Auto, *, Auto" Padding="0,16,0,8">
+<<<<<<< Updated upstream
                 <ImageButton x:Name="back" Grid.Row="0" Grid.Column="0" Clicked="back_Clicked" BackgroundColor="Transparent" HeightRequest="30" WidthRequest="30">
                     <ImageButton.Source>
                         <FontImageSource FontFamily="MaterialIcons" Glyph="&#xe5c4;" Color="White" Size="24"/>
                     </ImageButton.Source>
                 </ImageButton>
                 <Label Grid.Column="1" Text="Balance General" FontSize="18" FontAttributes="Bold" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center"/>
+=======
+                <Button Grid.Column="0" Text="◀" FontSize="18" TextColor="#6B7280" BackgroundColor="Transparent" VerticalOptions="Center" Clicked="BtnRegresar_Clicked"/>
+                <Label Grid.Column="1" Text="Balance General" FontSize="18" FontAttributes="Bold" TextColor="#1F2937" HorizontalOptions="Center" VerticalOptions="Center"/>
+>>>>>>> Stashed changes
                 <Label Grid.Column="2" Text="📅" FontSize="18" TextColor="#6B7280" VerticalOptions="Center"/>
             </Grid>
 
