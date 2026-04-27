@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:sistemaVabel_AppMovil.ViewModels"
+             x:Class="sistemaVabel_AppMovil.Views.LoginPage"
+             BackgroundColor="{StaticResource White}"
+             NavigationPage.HasNavigationBar="False"
+             Shell.NavBarIsVisible="False" 
+             Shell.TabBarIsVisible="False">
+    <ContentPage.BindingContext>
+        <viewmodels:LoginViewModel />
+    </ContentPage.BindingContext>
+    <Grid RowDefinitions="Auto, *">
+
+        <VerticalStackLayout Grid.Row="0" Padding="30, 60, 30, 30" Spacing="15" HorizontalOptions="Center">
+
+            <Image Source="logo_vabel.png" HeightRequest="70" />
+
+            <Label Text="Inicia sesión con tu&#x0a;cuenta o crea una" 
+                   TextColor="{StaticResource Primary}" 
+                   FontSize="18" 
+                   FontAttributes="Bold" 
+                   HorizontalTextAlignment="Center" />
+
+        </VerticalStackLayout>
+
+        <Border Grid.Row="1" BackgroundColor="{StaticResource Primary}" Stroke="Transparent"
+                StrokeShape="RoundRectangle 25,25,0,0" Padding="30, 40, 30, 20">
+
+            <Grid RowDefinitions="Auto, Auto, Auto, *">
+
+                <Label Grid.Row="0" Text="Ingresa tu correo" TextColor="White" 
+                       FontSize="18" FontAttributes="Bold" HorizontalOptions="Center" Margin="0,0,0,15" />
+
+                <Border Grid.Row="1" BackgroundColor="White" Stroke="Transparent" StrokeShape="RoundRectangle 22" 
+                        HeightRequest="45" Margin="0,0,0,25">
+                    <Entry Placeholder="usuario@email.vbl" Text="{Binding CorreoUsuario}" BackgroundColor="Transparent" 
+                           TextColor="{StaticResource Primary}" PlaceholderColor="Gray" HorizontalTextAlignment="Center" VerticalOptions="Center" />
+                </Border>
+
+                <Button Grid.Row="2" Text="Continuar" 
+                        Command="{Binding ContinuarCommand}"
+                        BackgroundColor="#A2E1E6" TextColor="{StaticResource Primary}" 
+                        FontSize="16" FontAttributes="Bold" CornerRadius="22" HeightRequest="45" />
+
+                <Label Grid.Row="3" Text="Vabel v1.0.0" TextColor="White" FontSize="12" 
+                       VerticalOptions="End" HorizontalOptions="Center" />
+            </Grid>
+        </Border>
+    </Grid>
+</ContentPage>

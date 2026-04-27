@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:sistemaVabel_AppMovil.ViewModels"
+             x:Class="sistemaVabel_AppMovil.Views.LibretaVentasPage"
+             Title=""
+             NavigationPage.HasNavigationBar="False"
+             Shell.NavBarIsVisible="False" 
+             Shell.TabBarIsVisible="False"
+             BackgroundColor="{StaticResource White}">
+    <ContentPage.BindingContext>
+        <viewmodels:LibretaVentasViewModel />
+    </ContentPage.BindingContext>
+
+    <ScrollView>
+        <VerticalStackLayout Spacing="0">
+
+            <Grid BackgroundColor="#1086a0" Padding="15,40,15,20" RowDefinitions="Auto, Auto" ColumnDefinitions="Auto, *, Auto">
+                <ImageButton Grid.Row="0" Grid.Column="0" 
+                             Command="{Binding BackCommand}" 
+                             BackgroundColor="Transparent" HeightRequest="30" WidthRequest="30">
+                    <ImageButton.Source>
+                        <FontImageSource FontFamily="MaterialIcons" Glyph="&#xe5c4;" Color="White" Size="24"/>
+                    </ImageButton.Source>
+                </ImageButton>
+
+                <VerticalStackLayout Grid.Row="0" Grid.Column="1" HorizontalOptions="Center" Spacing="5">
+                    <Image Source="vabel_icon.png" HeightRequest="40" HorizontalOptions="Center"/>
+                    <Label Text="Libreta de ventas" TextColor="White" FontSize="18" FontAttributes="Bold" HorizontalOptions="Center" />
+                    <Label Text="(Contabilidad)" TextColor="White" FontSize="14" HorizontalOptions="Center" />
+                </VerticalStackLayout>
+
+                <Image Grid.Row="0" Grid.Column="2" HeightRequest="30" WidthRequest="30">
+                    <Image.Source>
+                        <FontImageSource FontFamily="MaterialIcons" Glyph="&#xe853;" Color="White" Size="28"/>
+                    </Image.Source>
+                </Image>
+            </Grid>
+
+            <VerticalStackLayout Padding="20" Spacing="15">
+
+                <Label Text="Hoy" FontSize="18" FontAttributes="Bold" TextColor="#1086a0" />
+
+                <Button Text="Seleccionar período de ventas" 
+                        Command="{Binding SeleccionarPeriodoCommand}"
+                        BackgroundColor="#E0F7FA" TextColor="#00796B" 
+                        CornerRadius="20" FontAttributes="Bold"
+                        ImageSource="{FontImageSource FontFamily=MaterialIcons, Glyph=&#xe916;, Color=#00796B, Size=20}" />
+
+                <Grid ColumnDefinitions="*, *" ColumnSpacing="15">
+
+                    <Border Grid.Column="0" BackgroundColor="White" StrokeShape="RoundRectangle 15" Padding="10" Stroke="Transparent">
+                        <Border.Shadow>
+                            <Shadow Brush="Black" Offset="0,2" Radius="5" Opacity="0.1"/>
+                        </Border.Shadow>
+                        <VerticalStackLayout HorizontalOptions="Center" Spacing="5">
+                            <HorizontalStackLayout HorizontalOptions="Center" Spacing="5">
+                                <Label Text="Tarjeta de" FontSize="12" TextColor="Gray" VerticalOptions="Center"/>
+                                <Label Text="&#xe5d8;" FontFamily="MaterialIcons" TextColor="#4CAF50" FontSize="16" VerticalOptions="Center"/>
+                            </HorizontalStackLayout>
+                            <Label Text="(Has ganado)" FontSize="10" TextColor="Gray" HorizontalOptions="Center"/>
+                            <Label Text="{Binding GananciasTotales}" FontSize="14" FontAttributes="Bold" TextColor="Black" HorizontalOptions="Center"/>
+                        </VerticalStackLayout>
+                    </Border>
+
+                    <Border Grid.Column="1" BackgroundColor="White" StrokeShape="RoundRectangle 15" Padding="10" Stroke="Transparent">
+                        <Border.Shadow>
+                            <Shadow Brush="Black" Offset="0,2" Radius="5" Opacity="0.1"/>
+                        </Border.Shadow>
+                        <VerticalStackLayout HorizontalOptions="Center" Spacing="5">
+                            <HorizontalStackLayout HorizontalOptions="Center" Spacing="5">
+                                <Label Text="Tarjeta de" FontSize="12" TextColor="Gray" VerticalOptions="Center"/>
+                                <Label Text="&#xe5db;" FontFamily="MaterialIcons" TextColor="#d43c2f" FontSize="16" VerticalOptions="Center"/>
+                            </HorizontalStackLayout>
+                            <Label Text="(Has gastado)" FontSize="10" TextColor="Gray" HorizontalOptions="Center"/>
+                            <Label Text="{Binding GastosTotales}" FontSize="14" FontAttributes="Bold" TextColor="Black" HorizontalOptions="Center"/>
+                        </VerticalStackLayout>
+                    </Border>
+                </Grid>
+
+                <Label Text="Historial" FontSize="18" FontAttributes="Bold" TextColor="Black" Margin="0,10,0,0"/>
+
+                <Grid ColumnDefinitions="*, *" ColumnSpacing="15">
+                    <Button Grid.Column="0" Text="Gastos" BackgroundColor="#d43c2f" TextColor="White" CornerRadius="15" 
+                            Command="{Binding NavegarGastosCommand}"
+                            ImageSource="{FontImageSource FontFamily=MaterialIcons, Glyph=&#xef63;, Color=White, Size=20}" />
+
+                    <Button Grid.Column="1" Text="Ventas" BackgroundColor="#3ba151" TextColor="White" CornerRadius="15" 
+                            Command="{Binding NavegarVentasCommand}"
+                            ImageSource="{FontImageSource FontFamily=MaterialIcons, Glyph=&#xe8cc;, Color=White, Size=20}" />
+                </Grid>
+
+                <Grid ColumnDefinitions="*, *" RowDefinitions="Auto, Auto" ColumnSpacing="15" RowSpacing="15">
+
+                    <Border Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" BackgroundColor="White" StrokeShape="RoundRectangle 15" Padding="15" StrokeThickness="3">
+                        <Border.Stroke>
+                            <LinearGradientBrush EndPoint="1,1">
+                                <GradientStop Color="#1086a0" Offset="0.0" />
+                                <GradientStop Color="#3ba151" Offset="0.5" />
+                                <GradientStop Color="#d43c2f" Offset="1.0" />
+                            </LinearGradientBrush>
+                        </Border.Stroke>
+                        <VerticalStackLayout>
+                            <Label Text="Productos más vendidos" FontSize="14" FontAttributes="Bold" TextColor="Black" HorizontalTextAlignment="Center" Margin="0,0,0,10"/>
+
+                            <VerticalStackLayout BindableLayout.ItemsSource="{Binding ProductosTop}" Spacing="5">
+                                <BindableLayout.ItemTemplate>
+                                    <DataTemplate>
+                                        <HorizontalStackLayout Spacing="5">
+                                            <Label Text="{Binding Icono}" FontSize="12" VerticalOptions="Center"/>
+                                            <Label Text="{Binding Nombre}" FontSize="12" TextColor="#1086a0" VerticalOptions="Center"/>
+                                        </HorizontalStackLayout>
+                                    </DataTemplate>
+                                </BindableLayout.ItemTemplate>
+                            </VerticalStackLayout>
+                        </VerticalStackLayout>
+                    </Border>
+
+                    <Border Grid.Row="0" Grid.Column="1" BackgroundColor="White" StrokeShape="RoundRectangle 15" Padding="15" Stroke="Transparent">
+                        <Border.Shadow>
+                            <Shadow Brush="Black" Offset="0,2" Radius="5" Opacity="0.1"/>
+                        </Border.Shadow>
+                        <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="10">
+                            <Label Text="Reportes financieros" FontSize="12" FontAttributes="Bold" TextColor="Black" HorizontalTextAlignment="Center"/>
+                            <Label Text="&#xe85c;" FontFamily="MaterialIcons" TextColor="#1086a0" FontSize="40" HorizontalOptions="Center"/>
+                        </VerticalStackLayout>
+                    </Border>
+
+                    <Border Grid.Row="1" Grid.Column="1" BackgroundColor="White" StrokeShape="RoundRectangle 15" Padding="15" Stroke="Transparent">
+                        <Border.Shadow>
+                            <Shadow Brush="Black" Offset="0,2" Radius="5" Opacity="0.1"/>
+                        </Border.Shadow>
+                        <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="5">
+                            <Label Text="Métodos de pago" FontSize="12" FontAttributes="Bold" TextColor="Black" HorizontalTextAlignment="Center"/>
+                            <Label Text="&#xe8a1;" FontFamily="MaterialIcons" TextColor="#1086a0" FontSize="35" HorizontalOptions="Center"/>
+                        </VerticalStackLayout>
+                    </Border>
+
+                </Grid>
+            </VerticalStackLayout>
+            <Label Text="Vabel v1.0.0" TextColor="{StaticResource Primary}" HorizontalOptions="Center"/>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
