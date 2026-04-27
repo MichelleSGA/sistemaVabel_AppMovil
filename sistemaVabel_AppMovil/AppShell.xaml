@@ -4,13 +4,11 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:sistemaVabel_AppMovil"
-    xmlns:Vista ="clr-namespace:sistemaVabel_AppMovil.Vista"
-    Shell.FlyoutBehavior="Flyout">
+    Title="sistemaVabel_AppMovil">
 
-    <FlyoutItem Title="Gastos">
-        <ShellContent Title="Home" ContentTemplate="{DataTemplate local:MainPage}" Icon="home.png"/>
-        <ShellContent Title="Agregar gasto" ContentTemplate="{DataTemplate Vista:ModeloGastos}" Icon="add.png"/>
-        <!--<ShellContent Title="Ver gastos" ContentTemplate="{DataTemplate Vista:VerGastos}" Icon="ver.png"/>-->
-    </FlyoutItem>
+    <ShellContent
+        Title="Home"
+        ContentTemplate="{DataTemplate local:MainPage}"
+        Route="MainPage" />
 
 </Shell>
