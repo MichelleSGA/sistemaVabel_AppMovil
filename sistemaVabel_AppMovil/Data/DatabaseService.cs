@@ -21,6 +21,8 @@ namespace sistemaVabel_AppMovil.Data
             // Creamos las tablas basadas en tus clases
             await _db.CreateTableAsync<Producto>();
             await _db.CreateTableAsync<TransaccionFinanciera>();
+            await _db.CreateTableAsync<GastoModelo>();
+
         }
 
         // Ejemplo de método para obtener productos
@@ -28,6 +30,12 @@ namespace sistemaVabel_AppMovil.Data
         {
             await Init();
             return await _db.Table<Producto>().ToListAsync();
+        }
+        // Método asíncrono para insertar gasto
+        public async Task<int> InsertarGastoAsync(GastoModelo gasto)
+        {
+            await Init();
+            return await _db.InsertAsync(gasto);
         }
     }
 }

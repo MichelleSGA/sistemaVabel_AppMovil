@@ -7,15 +7,15 @@ namespace sistemaVabel_AppMovil.Views
 { 
 public partial class ModeloGastos : ContentPage
 {
-    ServicioGasto ControlGasto;
+    //ServicioGasto ControlGasto;
+    DatabaseService servicioDBC;
 
     private string _categoriaSeleccionada = string.Empty;
     private string _metodoPagoSeleccionado = string.Empty;
     public ModeloGastos()
 	{
-        InitializeComponent(); // Asegúrate de que el método sea accesible
-        ControlGasto = new ServicioGasto();
-        //servicioDBC = new DatabaseService();
+        InitializeComponent();
+        servicioDBC = new DatabaseService();
         //servicioDBC.crear(); Temporalmente se quita en lo que se adapta
     }
 
@@ -97,13 +97,12 @@ public partial class ModeloGastos : ContentPage
                 fecha: fechaGasto,
                 descripcion: _categoriaSeleccionada,
                 monto: montoIngresado,
-                tasa_iva: 0, // Asumiendo que por ahora es 0, o puedes agregar un Entry extra después
+                tasa_iva: 0,
                 observaciones: notas,
                 forma_pago: _metodoPagoSeleccionado
             );
 
-            // Guardar en SQLite
-            ControlGasto.insertarGasto(nuevoGasto);
+            await servicioDBC.InsertarGastoAsync(nuevoGasto);
 
             // Confirmación y limpieza de pantalla
             await DisplayAlert("Éxito", "El gasto se ha registrado correctamente.", "OK");
